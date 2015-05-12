@@ -1,0 +1,74 @@
+<framework>
+	<execution>
+		<clock enabled="false" unit="hz">100</clock>
+		<configMonitor>true</configMonitor>
+	</execution>
+	<modulesToEnable logLevel="WARN">
+		<module>ogre_window_manager</module>
+		<!--module>camera_importer</module-->
+		<module>image_loader</module>
+		<!--module>image_converter</module-->
+		<module>image_converter_2</module>
+		<module>image_renderer</module>
+		<module>image_renderer_2</module>
+	</modulesToEnable>
+	
+	<module>
+		<name>ogre_window_manager</name>
+		<config src="visualmanager.lconf" />
+	</module>
+	
+	<module>
+		<name>image_loader</name>
+		<channelMapping from="IMAGE" to="GREY_IMAGE" />
+		<config>
+			<directory>/home/hans/Bilder/20141212-174704</directory>
+			<filePattern>%04i.ppm</filePattern>
+			<minCounter>0</minCounter>
+			<maxCounter>1000</maxCounter>
+			<format>pgm</format>
+			<loadSingleFile>0</loadSingleFile>
+			<singleFile>/home/hans/Bilder/20141212-174813/0550.ppm</singleFile>
+		</config>
+	</module>
+	
+	<module>
+		<name>camera_importer</name>
+		<channelMapping from="IMAGE" to="CAMERA_IMAGE" />
+		<config src="camera_importer.lconf" />
+	</module>
+	
+	<module>
+		<name>image_converter</name>
+		<channelMapping from="INPUT_IMAGE" to="CAMERA_IMAGE" />
+		<channelMapping from="OUTPUT_IMAGE" to="GREY_IMAGE" />
+		<config>
+			<output_format>GREY</output_format>
+		</config>
+	</module>
+	
+	<module>
+		<name>image_converter_2</name>
+		<realName>image_converter</realName>
+		<channelMapping from="INPUT_IMAGE" to="GREY_IMAGE" />
+		<channelMapping from="OUTPUT_IMAGE" to="WARP_IMAGE" />
+		<config>
+			<output_format>GREY</output_format>
+			<filter>warp</filter>
+		</config>
+	</module>
+	
+	<module>
+		<name>image_renderer</name>
+		<channelMapping from="IMAGE" to="WARP_IMAGE" />
+	</module>
+	
+	<module>
+		<name>image_renderer_2</name>
+		<realName>image_renderer</realName>
+		<config>
+			<WINDOW>CAMERA</WINDOW>
+		</config>
+		<channelMapping from="IMAGE" to="GREY_IMAGE" />
+	</module>
+</framework>
