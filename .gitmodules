@@ -22,3 +22,6 @@
 [submodule "external/modules/image_loader"]
 	path = external/modules/image_loader
 	url = https://github.com/syxolk/image_loader
+[submodule "external/libraries/math_lib"]
+	path = external/libraries/math_lib
+	url = https://github.com/syxolk/math_lib.git
